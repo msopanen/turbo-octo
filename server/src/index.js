@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import config from '../config.json';
 import api from "./api";
+import pub from "./public";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json({
 }));
 
 app.use('/api', api({ config }));
+app.use('/', pub({ config }));
 
 app.set('port', process.env.PORT || config.port);
 app.listen(app.get('port'), () => {
